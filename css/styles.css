@@ -9,6 +9,7 @@
   --company-color: #8e8f99;
   --success-color: #31d0aa;
   --modal-color: #fcfcfc;
+  --pressed-state: #404bbf;
 
   /* Other */
 }
@@ -37,7 +38,7 @@ body {
   height: 4px;
   left: 0;
   bottom: 0;
-  background: #404bbf;
+  background: var(--pressed-state);
   border-radius: 2px;
 }
 
@@ -177,12 +178,12 @@ body {
   border-radius: 4px;
   text-align: center;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1), background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .hero-btn:hover,
 .hero-btn:focus {
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
-  background: #404bbf;
+  background: var(--pressed-state);
 }
 
 /* Why us section */
@@ -423,7 +424,6 @@ body {
 }
 .footer-list {
   display: flex;
-  align-items: baseline;
 }
 .footer-headline {
   color: var(--white-color);
@@ -511,10 +511,19 @@ body {
   letter-spacing: 0.04em;
   color: var(--white-color);
   cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .footer-submit:hover,
 .footer-submit:focus {
+  background-color: var(--pressed-state);
 }
+.icon-plane {
+  margin-left: 16px;
+  width: 24px;
+  height: 24px;
+  fill: var(--white-color);
+}
+
 /* portfolio */
 
 .container.filter {
@@ -685,7 +694,7 @@ body {
   right: 24px;
   width: 24px;
   height: 24px;
-  background-color: #e7e9fc;
+  background-color: var(--secondary-text-color);
   color: #000000;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
@@ -709,8 +718,10 @@ body {
   color: var(--title-text-color);
 }
 .form-field {
+  position: relative;
   display: flex;
   flex-direction: column;
+  margin: 0;
 }
 .form-field:not(:nth-last-child(-n + 3)) {
   margin-bottom: 8px;
@@ -723,23 +734,44 @@ body {
   letter-spacing: 0.04em;
   color: var(--company-color);
 }
-.icon-person {
-  width: 12px;
-  height: 12px;
+.icon-input {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+}
+.icon-input.icon-person {
+  width: 18px;
+  height: 18px;
+}
+.icon-input.icon-phone,
+.icon-input.icon-mail {
+  width: 18px;
+  height: 24px;
 }
 .modal-input {
-  padding-top: 8px;
-  padding-right: 16px;
-  padding-left: 16px;
+  padding-left: 38px;
   width: 360px;
   height: 40px;
+  font-size: 12px;
+  line-height: calc(18 / 12);
+  letter-spacing: 0.04em;
   background: var(--modal-color);
   border: 1px solid rgba(33, 33, 33, 0.2);
   border-radius: 4px;
 }
+.modal-input:focus {
+  outline: none;
+  border: 1px solid var(--accent-color);
+}
+.modal-input:focus + .icon-input {
+  fill: var(--accent-color);
+}
 .textarea {
+  padding-top: 8px;
+  padding-left: 16px;
   resize: none;
   height: 120px;
+  line-height: calc(16 / 12);
 }
 .form-field.textarea-input {
   margin-bottom: 16px;
@@ -748,8 +780,25 @@ body {
   flex-direction: row;
   margin-bottom: 24px;
 }
-.policy-checkbox {
-  margin-right: 16px;
+.policy-label {
+  display: flex;
+  justify-content: center;
+}
+
+.icon-click {
+  margin-right: 8px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 1.25px solid #2e2f42;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.checkbox:checked + .icon-click {
+  border-color: var(--pressed-state);
+  background-image: url(../images/click.svg);
+  background-size: contain;
+  background-origin: border-box;
 }
 .policy-text {
   font-size: 12px;
@@ -772,10 +821,15 @@ body {
   font-size: 16px;
   line-height: calc(24 / 16);
   letter-spacing: 0.04em;
-  color: #ffffff;
+  color: var(--white-color);
   background: var(--accent-color);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   border: 1px solid transparent;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-submit:hover,
+.btn-submit:focus {
+  background-color: var(--pressed-state);
 }
